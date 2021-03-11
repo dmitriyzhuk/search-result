@@ -60,6 +60,8 @@ const AccordionFilterItem = ({
 
   const titleSlug = generateSlug(getFilterTitle(title, intl))
 
+  var orientation = !isNavigationCollapsible || (isNavigationCollapsible && isCollapsed)
+
   return (
     <Fragment>
       {(!open || isNavigationCollapsible) && (
@@ -125,13 +127,12 @@ const AccordionFilterItem = ({
                   </Tag>
                 </span>
               )}
-              <span className={`${handles.accordionFilterItemIcon} fr`}>
+              <span className={`${handles.accordionFilterItemIcon} fr
+                  ${orientation? 'vtex-iconCaret--down':'vtex-iconCaret--up'}
+                `}>
                 <IconCaret
                   orientation={
-                    !isNavigationCollapsible ||
-                    (isNavigationCollapsible && isCollapsed)
-                      ? 'down'
-                      : 'up'
+                    orientation ? 'down' : 'up'
                   }
                   size={10}
                 />
